@@ -8,7 +8,7 @@ module ApplicationCable
 
     protected
       def find_verified_user
-        current_user
+        User.find_by(id: cookies.signed[:user_id])
       end
   end
 end

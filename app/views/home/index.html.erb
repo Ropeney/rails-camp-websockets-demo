@@ -1,2 +1,26 @@
-<h1>Hello!</h1>
-<div id="a"></div>
+<div class="container message-view" data-id="<%= current_user.email %>">
+  <h1>Chat Box!</h1>
+  <div class="control-box row">
+    <%= text_area_tag 'message', nil, placeholder: 'Say something&hellip;'.html_safe,
+      id: 'message-content' %>
+    <%= link_to 'Send', '#', class: 'btn btn-primary pull-right', id: 'send-message' %>
+  </div>
+
+  <div id="messages" class="row">
+    <% @messages.each do |message|
+        message_class =
+        if current_user == message.user
+          "my-chat-line"
+        else
+          "chat-line"
+        end %>
+
+      <div class="row-fluid">
+        <article class="<%= message_class %>">
+          <span class="speaker"><%= message.user.email %></span>
+          <span class="body"><%= message.text %></span>
+        </article>
+      </div>
+    <% end %>
+  </div>
+</div>
