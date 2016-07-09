@@ -1,13 +1,18 @@
 $(document).ready(function() {
-  var currentUser = $(".message-view").data("id");
+  var messageView = $(".message-view");
+  var currentUser = messageView.data("id");
+  console.log(currentUser);
+  var room = messageView.data('room');
 
   $('#send-message').click(function(e) {
     e.preventDefault();
-    App.chat.send({text: $('#message-content').val()})
+    var message = $('#message-content');
+    App.chat.send({text: message.val(), room: room})
+    message.val('');
   });
 
   (function() {
-    App.chat = App.cable.subscriptions.create({ channel: "ChatChannel" }, {
+    App.chat = App.cable.subscriptions.create({ channel: "ChatChannel", room: room }, {
       received: function(data) {
         this.appendLine(data);
         return new Notification(data["user"], {
@@ -20,14 +25,14 @@ $(document).ready(function() {
         return $("#messages").prepend(html);
       },
       createLine: function(data) {
-        var messageclass = "chat-line";
+        var messageClass = "chat-line";
         if (currentUser === data["user"])
           messageClass = "my-chat-line";
 
 
         return "<div class='row-fluid'><article class=\"" + messageClass +
-          "\">\n  <span class=\"speaker\">" +
-          data["user"] + "</span>\n  <span class=\"body\">" + data["text"] +
+          "\">\n  <span class=\"speaker\">" + "<a href='http://localhost:3000/?room=" +
+          data["user"] + "'>" + data["user"] + "</a></span>\n  <span class=\"body\">" + data["text"] +
           "</span>\n</article></div>";
       }
     });

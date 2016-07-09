@@ -3,6 +3,12 @@ class HomeController < ApplicationController
 
   def index
     cookies.signed[:user_id] = current_user.id
-    @messages = Message.all.includes(:user).order(created_at: :desc)
+    if params[:room].present?
+      @room = [current_user.email, params[:room]].sort.join("-")
+      @messages = Message.room(@room).includes(:user).order(created_at: :desc)
+    else
+      @messages = Message.room('main').includes(:user).order(created_at: :desc)
+      @room = 'main'
+    end
   end
 end
