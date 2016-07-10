@@ -4,12 +4,23 @@ $(document).ready(function() {
   console.log(currentUser);
   var room = userDetails.data('room');
 
-  $('#send-message').click(function(e) {
-    e.preventDefault();
-    var message = $('#message-content');
-    App.chat.send({text: message.val(), room: room})
-    message.val('');
-  });
+  var message_box = $("#send-message");
+  if (message_box.length) {
+    message_box.click(function(e) {
+      e.preventDefault();
+      var message = $('#message-content');
+      App.chat.send({text: message.val(), room: room})
+      message.val('');
+    });
+
+
+    $("#message-content").keyup(function(e) {
+      console.log("hello");
+      if(e.keyCode == 13 && !e.shiftKey) {
+        message_box.trigger("click");
+      }
+    });
+  }
 
   (function() {
     App.chat = App.cable.subscriptions.create({ channel: "ChatChannel", room: room }, {

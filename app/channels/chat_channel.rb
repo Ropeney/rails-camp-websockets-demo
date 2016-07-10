@@ -5,10 +5,12 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    p data
-    if Message.create(user: current_user, text: data["text"], room: data["room"])
-      ChatChannel.broadcast_to("chat_#{data["room"]}", { user: current_user.email, text: data["text"]})
-      p '*' * 100
+    message = ERB::Util.html_escape(data["text"])
+    message = message.gsub(/(?:\n\r?|\r\n?)/, '<br>').truncate(500)
+
+    if Message.create(user: current_user, text: message, room: data["room"])
+      ChatChannel.broadcast_to("chat_#{data["room"]}", { user: current_user.email,
+        text: message})
     end
   end
 

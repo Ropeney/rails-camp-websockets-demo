@@ -41,10 +41,11 @@
     }
 
     .speaker, .speaker > a {
-      margin-left: -5px;
       display: block;
       font-size: 12px;
       color: #c5bbbb;
+      padding-bottom: 2px;
+      border-bottom: 1px solid #ccc;
     }
 
     .thumb {

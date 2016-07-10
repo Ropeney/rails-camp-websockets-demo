@@ -24,7 +24,7 @@
             <span class="speaker">
               <%= link_to message.user.email, root_path(room: message.user.email) %>
             </span>
-            <span class="body"><%= message.text %></span>
+            <span class="body"><%= message.text.html_safe %></span>
           </span>
         </article>
       </div>
