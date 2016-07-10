@@ -27,7 +27,8 @@ body {
     padding: 15px;
     max-height: 95vh;
     border: 15px solid #fff7f7;
-    overflow-x: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     max-width: 800px;
   }
 }

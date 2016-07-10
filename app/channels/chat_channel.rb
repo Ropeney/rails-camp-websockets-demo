@@ -9,7 +9,7 @@ class ChatChannel < ApplicationCable::Channel
     message = message.gsub(/(?:\n\r?|\r\n?)/, '<br>').truncate(500)
 
     if Message.create(user: current_user, text: message, room: data["room"])
-      ChatChannel.broadcast_to("chat_#{data["room"]}", { user: current_user.email,
+      ChatChannel.broadcast_to("chat_#{data["room"]}", { user: current_user.username,
         text: message})
     end
   end

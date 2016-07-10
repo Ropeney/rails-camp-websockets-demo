@@ -3,6 +3,10 @@ class MessageItem extends React.Component {
     super(props)
   }
 
+  address() {
+   return "http://localhost:3000?room=" + this.props.username
+  }
+
   render() {
     return(
       <div className="row">
@@ -12,7 +16,9 @@ class MessageItem extends React.Component {
           </span>
           <span className="content">
             <span className="speaker">
-              {this.props.username}
+              <a href={this.address()}>
+                {this.props.username}
+              </a>
             </span>
             <span className="body">{this.props.message}</span>
           </span>

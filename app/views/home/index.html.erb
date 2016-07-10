@@ -6,6 +6,9 @@
     <%= link_to 'Send', '#', class: 'btn btn-primary pull-right', id: 'send-message' %>
   </div>
 
+  <% if params[:room].present? %>
+    <h2 class="text-center"><%= params[:room] %></h2>
+  <% end %>
   <div id="messages" class="row">
     <% @messages.each do |message|
         message_class =
@@ -16,7 +19,7 @@
         end %>
 
         <%= react_component("MessageItem",
-                              username: message.user.email,
+                              username: message.user.username,
                               message: message.text,
                               classType: message_class) %>
     <% end %>
