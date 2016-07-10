@@ -20,13 +20,6 @@
 }
 
 .message-view {
-  background-color: #fff7f7;
-  border-radius: 15px;
-  padding: 15px;
-  max-height: 95vh;
-  border: 15px solid #fff7f7;
-  overflow-x: scroll;
-  max-width: 800px;
 
   h1 {
     font-size: 38px;
@@ -38,12 +31,31 @@
     margin: 10px 15px;
     padding: 5px 20px 20px;
     border-radius: 10px;
+    position: relative;
+    min-height: 55px;
+
+    .content {
+      margin-left: 75px;
+      display: block;
+      min-height: 48px;
+    }
 
     .speaker, .speaker > a {
       margin-left: -5px;
       display: block;
       font-size: 12px;
       color: #c5bbbb;
+    }
+
+    .thumb {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      padding: 8px 0;
+      img {
+        height: 48px;
+        width: 48px;
+      }
     }
   }
 

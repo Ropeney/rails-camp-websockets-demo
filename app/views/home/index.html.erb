@@ -1,4 +1,4 @@
-<div class="container message-view" data-id="<%= current_user.email %>" data-room="<%= @room %>">
+<div class="message-view">
   <h1>Chat Box!</h1>
   <div class="control-box row">
     <%= text_area_tag 'message', nil, placeholder: 'Say something&hellip;'.html_safe,
@@ -17,10 +17,15 @@
 
       <div class="row-fluid">
         <article class="<%= message_class %>">
-          <span class="speaker">
-            <%= link_to message.user.email, root_path(room: message.user.email) %>
+          <span class="thumb">
+            <img src="http://www.twetter.local/avatars/original/missing.png" />
           </span>
-          <span class="body"><%= message.text %></span>
+          <span class="content">
+            <span class="speaker">
+              <%= link_to message.user.email, root_path(room: message.user.email) %>
+            </span>
+            <span class="body"><%= message.text %></span>
+          </span>
         </article>
       </div>
     <% end %>

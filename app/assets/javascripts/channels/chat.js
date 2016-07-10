@@ -1,8 +1,8 @@
 $(document).ready(function() {
-  var messageView = $(".message-view");
-  var currentUser = messageView.data("id");
+  var userDetails = $(".user-details");
+  var currentUser = userDetails.data("id");
   console.log(currentUser);
-  var room = messageView.data('room');
+  var room = userDetails.data('room');
 
   $('#send-message').click(function(e) {
     e.preventDefault();
@@ -31,9 +31,10 @@ $(document).ready(function() {
 
 
         return "<div class='row-fluid'><article class=\"" + messageClass +
-          "\">\n  <span class=\"speaker\">" + "<a href='http://localhost:3000/?room=" +
+          "\">\n" + "<span class=\"thumb\"><img src=\"http:///www.twetter.local/avatars/original/missing.png\" /></span><span class=\"content\">" +
+          "<span class=\"speaker\">" + "<a href='http://localhost:3000/?room=" +
           data["user"] + "'>" + data["user"] + "</a></span>\n  <span class=\"body\">" + data["text"] +
-          "</span>\n</article></div>";
+          "</span></span>\n</article></div>";
       }
     });
   }).call(this);

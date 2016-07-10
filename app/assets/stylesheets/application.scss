@@ -20,4 +20,14 @@
 body {
   padding-top: 20px;
   background-color: #ffd3b4;
+
+  & > .container {
+    background-color: #fff7f7;
+    border-radius: 15px;
+    padding: 15px;
+    max-height: 95vh;
+    border: 15px solid #fff7f7;
+    overflow-x: scroll;
+    max-width: 800px;
+  }
 }

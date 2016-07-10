@@ -7,7 +7,7 @@ class ChatChannel < ApplicationCable::Channel
   def receive(data)
     p data
     if Message.create(user: current_user, text: data["text"], room: data["room"])
-      ChatChannel.broadcast_to("chat_#{data[:room]}", { user: current_user.email, text: data["text"]})
+      ChatChannel.broadcast_to("chat_#{data["room"]}", { user: current_user.email, text: data["text"]})
       p '*' * 100
     end
   end

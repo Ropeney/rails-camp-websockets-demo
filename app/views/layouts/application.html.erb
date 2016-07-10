@@ -9,6 +9,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container user-details"
+      <% if current_user.present? %>
+        data-id="<%= current_user.email %>" data-room="<%= @room %>"
+      <% end %>>
+      <div class="pull-right">
+        <% if current_user.present? %>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+        <% end %>
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>
