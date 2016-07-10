@@ -15,7 +15,6 @@ $(document).ready(function() {
 
 
     $("#message-content").keyup(function(e) {
-      console.log("hello");
       if(e.keyCode == 13 && !e.shiftKey) {
         message_box.trigger("click");
       }
@@ -33,19 +32,21 @@ $(document).ready(function() {
       appendLine: function(data) {
         var html;
         html = this.createLine(data);
+        $("#messages").prepend("<div id='replaceMe'></div>");
+        ReactDOM.render(html, document.getElementById("replaceMe"));
         return $("#messages").prepend(html);
       },
+
       createLine: function(data) {
         var messageClass = "chat-line";
         if (currentUser === data["user"])
           messageClass = "my-chat-line";
 
 
-        return "<div class='row-fluid'><article class=\"" + messageClass +
-          "\">\n" + "<span class=\"thumb\"><img src=\"http:///www.twetter.local/avatars/original/missing.png\" /></span><span class=\"content\">" +
-          "<span class=\"speaker\">" + "<a href='http://localhost:3000/?room=" +
-          data["user"] + "'>" + data["user"] + "</a></span>\n  <span class=\"body\">" + data["text"] +
-          "</span></span>\n</article></div>";
+        messageItem = React.createElement(MessageItem,
+          { username: data["user"], message: data["text"], classType: messageClass });
+
+        return messageItem;
       }
     });
   }).call(this);

@@ -15,19 +15,10 @@
           "chat-line"
         end %>
 
-      <div class="row-fluid">
-        <article class="<%= message_class %>">
-          <span class="thumb">
-            <img src="http://www.twetter.local/avatars/original/missing.png" />
-          </span>
-          <span class="content">
-            <span class="speaker">
-              <%= link_to message.user.email, root_path(room: message.user.email) %>
-            </span>
-            <span class="body"><%= message.text.html_safe %></span>
-          </span>
-        </article>
-      </div>
+        <%= react_component("MessageItem",
+                              username: message.user.email,
+                              message: message.text,
+                              classType: message_class) %>
     <% end %>
   </div>
 </div>
