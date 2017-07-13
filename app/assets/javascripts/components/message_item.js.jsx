@@ -12,7 +12,7 @@ class MessageItem extends React.Component {
       <div className="row">
         <article className={this.props.classType}>
           <span className="thumb">
-            <img src="http://www.twetter.local/avatars/original/missing.png" />
+            <img src="https://image.freepik.com/free-icon/social-twitter-square_318-27827.png" />
           </span>
           <span className="content">
             <span className="speaker">
@@ -20,7 +20,7 @@ class MessageItem extends React.Component {
                 {this.props.username}
               </a>
             </span>
-            <span className="body">{this.props.message}</span>
+            <span className="body" dangerouslySetInnerHTML={{__html: this.props.message}}></span>
           </span>
         </article>
       </div>

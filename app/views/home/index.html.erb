@@ -1,5 +1,5 @@
 <div class="message-view">
-  <h1>Chat Box!</h1>
+  <h1><%= link_to 'Chat Box!', root_path %></h1>
   <div class="control-box row">
     <%= text_area_tag 'message', nil, placeholder: 'Say something&hellip;'.html_safe,
       id: 'message-content' %>
